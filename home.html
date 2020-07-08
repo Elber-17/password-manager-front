@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" href="./css/home.css" />
+		<link rel="stylesheet" href="./css/materialdesignicons.min.css" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
+		/>
+		<title>Home - Passwords Management</title>
+	</head>
+	<body>
+		<div id="snackbar">Some text some message..</div>
+		<div class="sidebar">
+			<div class="header">
+				<div class="icon">
+					<span class="mdi mdi-lock-outline"></span>
+				</div>
+				Passwords Management
+			</div>
+			<div class="element">
+				<span class="mdi mdi-home-outline"></span>
+				Inicio
+			</div>
+			<div class="element">
+				<span class="mdi mdi-account-box-multiple-outline"></span>
+				Cuentas
+			</div>
+			<div class="element">
+				<span class="mdi mdi-folder-multiple-plus-outline"></span>
+				Generador de contraseñas
+			</div>
+			<div class="element">
+				<span class="mdi mdi-nut"></span>
+				Configuración
+			</div>
+			<div class="element">
+				<span class="mdi mdi-logout"></span> Salir
+			</div>
+
+			<div class="footer">
+				Elber Nava 2020
+			</div>
+		</div>
+
+		<div class="outfocus-responsive-menu"></div>
+
+		<div class="content">
+			<div id="responsive-menu-button" class="responsive-menu-button">
+				<span class="mdi mdi-menu"></span>
+			</div>
+
+			<div class="home">
+				<div class="card">
+					<div class="card-content">
+						<p class="title">
+							Nunca más olvidarás las credenciales de acceso a
+							redes sociales, además podrás crear contraseñas
+							robustar con la herramienta creación de contraseñas
+							seguras!
+						</p>
+						<p class="subtitle">
+							* Estás en una version de solo muestra, se
+							recomienda que no intentes guardar ningún dato,
+							aunque si lo haces no se almacenará en niguna base
+							de datos.
+						</p>
+					</div>
+					<footer class="card-footer">
+						<p class="card-footer-item">
+							<span class="mdi mdi-gitlab"></span>
+							<span>
+								Ver código fuente en
+								<a
+									href="https://twitter.com/codinghorror/status/506010907021828096"
+									>gitlab</a
+								>
+							</span>
+						</p>
+						<p class="card-footer-item">
+							<span class="mdi mdi-linkedin"></span>
+							<span>
+								Elber Nava en <a href="#">LinkedIn</a>
+							</span>
+						</p>
+					</footer>
+				</div>
+			</div>
+			<div class="accounts">
+				<div id="app">
+					<div
+						class="accounts-card new-account"
+						@mouseover="overAccountCard('#218bb4')"
+						@mouseleave="leaveAccountCard"
+					>
+						<div class="img" @click="showInfo('#218bb4')">
+							<span
+								id="new-account"
+								class="mdi mdi-account-plus"
+							></span>
+						</div>
+						<div class="form">
+							<div class="account-name">
+								Agregar Cuenta
+							</div>
+							<div class="row new-account">
+								<label for=""
+									>Seleccion el tipo de cuenta</label
+								>
+								<select id="selectNewAccount" name="select">
+									<option
+										value="none"
+										selected
+										disabled
+										hidden
+										>Tipo de cuenta</option
+									>
+									<option
+										v-for="account of accounts"
+										value="account.id"
+										>{{account.name}}</option
+									>
+								</select>
+							</div>
+							<div class="row">
+								<label for="">Nombre de usuario</label>
+								<input type="text" />
+							</div>
+							<div class="row">
+								<label for="">Contraseña</label>
+								<input type="password" />
+								<span
+									class="mdi mdi-eye-outline"
+									@click="changeInputType(true)"
+								></span>
+							</div>
+							<div
+								@mouseover="buttonEditSaveHover('#218bb4')"
+								@mouseleave="buttonEditSaveLeave('#218bb4')"
+								class="edit-save-button"
+								@click="addUserAccount"
+							>
+								Agregar
+								<span
+									class="mdi mdi-content-save-outline"
+								></span>
+							</div>
+						</div>
+					</div>
+					<div
+						class="accounts-card"
+						v-for="account of userAccounts"
+						:key="account.id"
+						:id="account.id"
+						@mouseover="overAccountCard(account.account.dominantColor)"
+						@mouseleave="leaveAccountCard"
+					>
+						<div
+							class="img"
+							:style="{background:'radial-gradient(' + account.account.dominantColor + ',transparent)'}"
+							@click="showInfo(account.account.dominantColor)"
+						>
+							<img :src="account.account.urlImg" alt="" />
+						</div>
+						<div class="form">
+							<div class="account-name">
+								{{account.account.name}}
+							</div>
+							<div class="row">
+								<label for="">Nombre de usuario</label>
+								<input
+									type="text"
+									:value="account.username"
+									disabled
+								/>
+								<span
+									class="mdi mdi-content-copy"
+									@click="copytoClipboard"
+								></span>
+							</div>
+							<div class="row">
+								<label for="">Contraseña</label>
+								<input
+									type="password"
+									:value="account.password"
+									disabled
+								/>
+								<span
+									class="mdi mdi-content-copy"
+									@click="copytoClipboard"
+								></span>
+								<span
+									class="mdi mdi-eye-outline"
+									@click="changeInputType(false)"
+								></span>
+							</div>
+							<div
+								@mouseover="buttonEditSaveHover(account.account.dominantColor)"
+								@mouseleave="buttonEditSaveLeave(account.account.dominantColor)"
+								@click="buttonEditSaveClick(account.account.dominantColor)"
+								class="edit-save-button"
+							>
+								Editar
+								<span
+									class="mdi mdi-square-edit-outline"
+								></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="passwords-generator">
+				<h1>generator de contraseñas seguras</h1>
+			</div>
+			<div class="configuration">
+				<h1>configuracion</h1>
+			</div>
+		</div>
+
+		<script src="./js/vue.js"></script>
+		<script src="./js/axios.min.js"></script>
+		<script src="./js/axios-request.js"></script>
+		<script src="./js/home.js"></script>
+		<script src="./js/home-accounts.js"></script>
+	</body>
+</html>

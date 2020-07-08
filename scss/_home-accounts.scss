@@ -1,0 +1,165 @@
+@use './fonts';
+@use './helpers';
+
+.content {
+	height: auto;
+	.accounts {
+		display: flex;
+		width: 100%;
+		min-height: 100%;
+		height: auto;
+		justify-content: center;
+		box-sizing: border-box;
+
+		#app {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+			box-sizing: border-box;
+			width: 100%;
+			height: 100%;
+
+			.accounts-card {
+				@include helpers.no-select;
+				display: flex;
+				height: 150px;
+				width: 80%;
+				box-sizing: border-box;
+				flex-direction: column;
+				margin-top: 5%;
+				position: relative;
+				align-items: center;
+				transition: height ease-in-out 0.4s;
+				overflow: hidden;
+
+				.img {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					height: 150px;
+					width: 100%;
+					cursor: pointer;
+					background: radial-gradient(#218bb4, transparent);
+
+					img {
+						display: flex;
+						width: 100%;
+						height: 100%;
+						object-fit: contain;
+					}
+
+					span {
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						font-size: 150px;
+						color: white;
+					}
+				}
+
+				.form {
+					width: 100%;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					flex-direction: column;
+					height: 100%;
+					overflow: hidden;
+
+					.account-name {
+						display: flex;
+						height: 50px;
+						font-family: Roboto-Regular;
+						font-size: 1.5rem;
+						align-items: center;
+						justify-content: center;
+					}
+
+					.row {
+						display: flex;
+						align-items: center;
+						justify-content: space-around;
+						width: 50%;
+						height: 45px;
+						margin-top: 15px;
+						position: relative;
+
+						label {
+							display: inline-block;
+							width: 35%;
+							text-align: center;
+						}
+
+						input {
+							box-sizing: border-box;
+							padding: 0 3px;
+							outline: none;
+							width: 55%;
+							text-align: center;
+							height: 30px;
+							border: 1px solid black;
+						}
+
+						input:disabled {
+							background-color: rgba(
+								$color: #777777,
+								$alpha: 0.3
+							);
+						}
+
+						select {
+							width: 55%;
+							height: 30px;
+							outline: none;
+							border: 1px solid #218bb4;
+							background: transparent;
+							text-align-last: center;
+						}
+
+						span {
+							position: absolute;
+							right: -5%;
+							font-size: 1.5rem;
+							cursor: pointer;
+						}
+
+						span.mdi-eye-outline {
+							display: flex;
+							align-items: center;
+							justify-content: center;
+							right: 2.5%;
+							width: 30px;
+							height: 30px;
+						}
+					}
+				}
+
+				.edit-save-button {
+					align-items: center;
+					justify-content: center;
+					height: 35px;
+					width: 120px;
+					border: 1px solid red;
+					cursor: pointer;
+					align-self: flex-end;
+					position: relative;
+					display: flex;
+					margin-right: 10px;
+					transition: all ease-in-out 0.3s;
+					margin-bottom: 10px;
+
+					span {
+						position: absolute;
+						right: 5px;
+						transition: all ease-in-out 0.3s;
+					}
+				}
+			}
+
+			.accounts-card:last-child {
+				margin-bottom: 5%;
+			}
+		}
+	}
+}

@@ -1,0 +1,436 @@
+@use '../node_modules/normalize-scss/fork-versions/default/normalize';
+@use './fonts';
+@use './helpers';
+
+@import "../node_modules/bulma/sass/utilities/initial-variables.sass";
+@import "../node_modules/bulma/sass/utilities/functions.sass";
+@import "../node_modules/bulma/sass/utilities/derived-variables.scss";
+@import "../node_modules/bulma/sass/utilities/mixins.sass";
+@import "../node_modules/bulma/sass/elements/notification.sass";
+
+body,
+html {
+	display: flex;
+	height: 100%;
+	width: 100%;
+	font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto",
+		"Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+		"Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+.main-container {
+	display: flex;
+	width: 100%;
+	height: 100%;
+
+	.panel {
+		@include helpers.no-select;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		width: 30%;
+		height: 100%;
+		background-color: rgb(33, 139, 180);
+
+		.icon-container {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			position: absolute;
+			background-color: rgb(33, 139, 180);
+			color: white;
+			font-size: 5rem;
+			right: -15%;
+			top: 42%;
+			border: 1px solid white;
+			border-radius: 50%;
+			height: 15%;
+			width: 25%;
+			border-width: 0.7rem;
+		}
+
+		.title {
+			color: white;
+			font-family: Bentham-Regular;
+			font-size: 3.5rem;
+			text-align: center;
+			width: 80%;
+			position: relative;
+			left: -5%;
+		}
+	}
+
+	.form-container {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		width: 70%;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+
+		.notification {
+			@include helpers.no-select;
+			display: flex;
+			position: absolute;
+			align-items: center;
+			justify-content: center;
+			width: 50%;
+			box-sizing: border-box;
+			text-align: center;
+			transition: all ease-in-out 0.2s;
+			height: 0;
+			padding: 0;
+			top: 2.5%;
+			overflow: hidden;
+
+			.notification-button-close {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				position: absolute;
+				top: 5%;
+				right: 1%;
+				background-color: rgba($color: #666666, $alpha: 0.3);
+				border-radius: 50%;
+				width: 6%;
+				height: 40%;
+				font-size: 1.3rem;
+				cursor: pointer;
+				transition: all ease-in-out 0.2s;
+			}
+
+			.notification-button-close:hover {
+				background-color: rgba($color: #000000, $alpha: 0.3);
+			}
+
+			p {
+				margin: 0 1%;
+				font-weight: bold;
+				display: contents;
+			}
+		}
+
+		.form {
+			display: flex;
+			align-items: center;
+			flex-direction: column;
+			height: 70%;
+			width: 50%;
+			-webkit-box-shadow: 3px 13px 24px -4px rgba(0, 0, 0, 0.75);
+			-moz-box-shadow: 3px 13px 24px -4px rgba(0, 0, 0, 0.75);
+			box-shadow: 3px 13px 24px -4px rgba(0, 0, 0, 0.75);
+
+			.title {
+				@include helpers.no-select;
+				display: flex;
+				align-items: center;
+				text-align: center;
+				justify-content: center;
+				font-size: 2rem;
+				height: 30%;
+				width: 100%;
+				color: white;
+				background-color: rgb(33, 139, 180);
+			}
+
+			.inputs {
+				display: flex;
+				position: relative;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				height: 50%;
+				width: 100%;
+
+				.row {
+					display: flex;
+					align-items: center;
+					position: relative;
+					width: 90%;
+					height: 30%;
+					margin: 2% 0;
+
+					label {
+						@include helpers.no-select;
+						width: 38%;
+						text-align: center;
+						margin-right: 5%;
+						color: #4a4a4a;
+					}
+
+					.icon {
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						font-size: 1.5rem;
+						height: 60%;
+						width: 12%;
+						color: white;
+						background-color: rgb(33, 139, 180);
+						transition: all ease-in-out 0.5s;
+					}
+
+					input {
+						display: flex;
+						height: 60%;
+						box-sizing: border-box;
+						width: 50%;
+						padding: 0 8%;
+						border: 1px solid black;
+						border-left: 1px solid white;
+						transition: all ease-in-out 0.5s;
+					}
+
+					// input.shake {
+					// 	animation: shake 0.82s
+					// 		cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+					// 	transform: translate3d(0, 0, 0);
+					// 	backface-visibility: hidden;
+					// 	perspective: 1000px;
+					// }
+
+					@keyframes shake {
+						10%,
+						90% {
+							transform: translate3d(0px, -1px, 0);
+						}
+
+						20%,
+						80% {
+							transform: translate3d(0, 2px, 0);
+						}
+
+						30%,
+						50%,
+						70% {
+							transform: translate3d(0, -4px, 0);
+						}
+
+						40%,
+						60% {
+							transform: translate3d(0, 4px, 0);
+						}
+					}
+
+					.error-msg {
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						color: red;
+						position: absolute;
+						width: 59%;
+						bottom: -25%;
+						text-align: justify;
+						right: 0;
+						height: 0;
+						overflow: hidden;
+						transition: all ease-in-out 0.5s;
+					}
+
+					input:focus {
+						outline: none;
+						border: 1px solid rgb(33, 139, 180);
+					}
+
+					.show-password-icon {
+						display: flex;
+						height: 60%;
+						width: 8%;
+						align-items: center;
+						justify-content: center;
+						position: absolute;
+						right: 0%;
+						cursor: pointer;
+						font-size: 1.3rem;
+						transition: all ease-in-out 0.5s;
+					}
+				}
+
+				.row.forgot-password {
+					position: absolute;
+					height: 10%;
+					bottom: 0;
+					margin: 0;
+					justify-content: flex-end;
+
+					a {
+						color: #3273dc;
+					}
+				}
+			}
+
+			.buttons {
+				@include helpers.no-select;
+				display: flex;
+				justify-content: center;
+				height: 20%;
+				width: 100%;
+				align-items: flex-end;
+
+				.button-accept {
+					display: flex;
+					position: relative;
+					height: 60%;
+					width: 90%;
+					align-items: center;
+					justify-content: center;
+					text-align: center;
+					cursor: pointer;
+					background-color: rgb(33, 139, 180);
+					color: white;
+					overflow: hidden;
+					margin-bottom: 5%;
+					font-size: 1.5rem;
+
+					.icon {
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						position: absolute;
+						right: -20%;
+						height: 100%;
+						width: 20%;
+						font-size: 2rem;
+						color: white;
+						transition: all ease-in-out 0.5s;
+						border-left: 1px solid white;
+					}
+				}
+
+				.button-accept:hover {
+					.icon {
+						right: 0;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media (min-width: 992px) and (max-width: 1250px) {
+	.main-container {
+		.panel {
+			.title {
+				font-size: 2.5rem;
+			}
+		}
+
+		.form-container {
+			.notification {
+				width: 70%;
+			}
+
+			.form {
+				height: 80%;
+				width: 70%;
+			}
+		}
+	}
+}
+
+@media (min-width: 727px) and (max-width: 991.98px) {
+	.main-container {
+		.panel {
+			width: 35%;
+			.icon-container {
+				font-size: 4rem;
+			}
+
+			.title {
+				font-size: 2rem;
+			}
+		}
+
+		.form-container {
+			.notification {
+				width: 80%;
+			}
+
+			.form {
+				height: 80%;
+				width: 80%;
+			}
+		}
+	}
+}
+
+@media (min-width: 580px) and (max-width: 726.98px) {
+	.main-container {
+		.panel {
+			display: none;
+		}
+
+		.form-container {
+			width: 100%;
+
+			.notification {
+				width: 90%;
+				margin-top: 5%;
+			}
+
+			.form {
+				height: 90%;
+				width: 90%;
+				margin-bottom: 5%;
+
+				.title {
+					font-size: 1.5rem;
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 579.98px) {
+	.main-container {
+		.panel {
+			display: none;
+		}
+
+		.form-container {
+			width: 100%;
+
+			.notification {
+				width: 90%;
+
+				.notification-button-close {
+					width: 7%;
+				}
+			}
+
+			.form {
+				height: 95%;
+				width: 95%;
+
+				.inputs {
+					.row {
+						input {
+							width: 48%;
+						}
+						.icon {
+							width: 15%;
+						}
+
+						.show-password-icon {
+							right: 0%;
+							width: 8%;
+						}
+					}
+				}
+
+				.title {
+					font-size: 1.5rem;
+				}
+			}
+		}
+	}
+}
+
+@media (max-height: 551.98px) {
+	body,
+	html {
+		height: 620px;
+	}
+}
