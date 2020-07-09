@@ -628,6 +628,7 @@ template {
   transition: all ease-in-out 0.3s;
   margin-bottom: 10px;
   padding-bottom: 2px;
+  margin-top: 10px;
 }
 .content .accounts #app .accounts-card .edit-save-button span {
   position: absolute;
@@ -690,6 +691,202 @@ template {
     right: -10%;
   }
   .content .accounts #app .accounts-card .form .row span.mdi-content-copy:hover::after {
+    display: none;
+  }
+}
+.passwords-generator {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.passwords-generator .passwords-generator-card {
+  box-sizing: border-box;
+  width: 60%;
+  height: 80%;
+  max-height: 480px;
+  min-height: 380px;
+  max-width: 600px;
+  -webkit-box-shadow: 3px 13px 24px -4px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 3px 13px 24px -4px rgba(0, 0, 0, 0.75);
+  box-shadow: 3px 13px 24px -4px rgba(0, 0, 0, 0.75);
+}
+.passwords-generator .passwords-generator-card .header {
+  box-sizing: border-box;
+  padding: 0 20px;
+  background: #218bb4;
+  color: white;
+  font-family: Roboto-Regular;
+  width: 100%;
+  height: 25%;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center;
+}
+.passwords-generator .passwords-generator-card .header span {
+  font-size: 3rem;
+}
+.passwords-generator .passwords-generator-card .body {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  align-items: center;
+}
+.passwords-generator .passwords-generator-card .body .row {
+  display: flex;
+  margin: 10px;
+  width: 80%;
+  height: 35px;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.passwords-generator .passwords-generator-card .body .row label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40%;
+}
+.passwords-generator .passwords-generator-card .body .row input {
+  box-sizing: border-box;
+  height: 30px;
+  width: 40%;
+  border: 1px solid #218bb4;
+  padding: 0 15px;
+}
+.passwords-generator .passwords-generator-card .body .row input:focus {
+  outline: none;
+}
+.passwords-generator .passwords-generator-card .body .row input[type=radio] {
+  height: 20px;
+}
+.passwords-generator .passwords-generator-card .body .row .button-generate {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid #218bb4;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all ease-in-out 0.3s;
+  cursor: pointer;
+}
+.passwords-generator .passwords-generator-card .body .row .button-generate:hover {
+  background-color: #218bb4;
+  color: white;
+}
+.passwords-generator .passwords-generator-card .body .row.length {
+  justify-content: start;
+}
+.passwords-generator .passwords-generator-card .body .row.length label {
+  width: 53.5%;
+}
+.passwords-generator .passwords-generator-card .body .row.length input {
+  width: 20%;
+  text-align: center;
+}
+.passwords-generator .passwords-generator-card .body .row.length input:disabled {
+  background-color: rgba(119, 119, 119, 0.3);
+}
+.passwords-generator .passwords-generator-card .body .row.length .button-plus,
+.passwords-generator .passwords-generator-card .body .row.length .button-down {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-sizing: border-box;
+  height: 30px;
+  width: 6.5%;
+  transition: all ease-in-out 0.3s;
+}
+.passwords-generator .passwords-generator-card .body .row.length .button-plus {
+  border: 1px solid #00ff40;
+  margin: 0 0 0 15px;
+}
+.passwords-generator .passwords-generator-card .body .row.length .button-plus:hover {
+  background-color: #00ff40;
+  color: white;
+}
+.passwords-generator .passwords-generator-card .body .row.length .button-down {
+  border: 1px solid #f54545;
+  margin: 0 0 0 15px;
+}
+.passwords-generator .passwords-generator-card .body .row.length .button-down:hover {
+  background-color: #f54545;
+  color: white;
+}
+.passwords-generator .passwords-generator-card .body .row.generated-password-label {
+  margin-bottom: 0;
+}
+.passwords-generator .passwords-generator-card .body .row.generated-password {
+  position: relative;
+  margin-top: 0;
+}
+.passwords-generator .passwords-generator-card .body .row.generated-password input {
+  width: 100%;
+  text-align: center;
+}
+.passwords-generator .passwords-generator-card .body .row.generated-password input:disabled {
+  background-color: rgba(119, 119, 119, 0.3);
+}
+.passwords-generator .passwords-generator-card .body .row.generated-password span {
+  position: absolute;
+  font-size: 1.5rem;
+  right: -35px;
+  color: #218bb4;
+  cursor: pointer;
+}
+.passwords-generator .passwords-generator-card .body .row.generated-password span.mdi-content-copy:hover::after {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  font-size: 1rem;
+  content: "Copiar";
+  height: 30px;
+  top: -35px;
+  right: -15px;
+  width: 60px;
+  background: rgba(128, 128, 128, 0.8);
+  color: white;
+}
+
+@media (min-width: 768px) and (max-width: 1150px) {
+  .passwords-generator .passwords-generator-card {
+    width: 95%;
+  }
+}
+@media (max-width: 767.98px) {
+  .passwords-generator .passwords-generator-card {
+    width: 90%;
+    margin-top: 30px;
+  }
+  .passwords-generator .passwords-generator-card .body .row {
+    width: 100%;
+  }
+  .passwords-generator .passwords-generator-card .body .row.generated-password-label label {
+    width: 100%;
+  }
+  .passwords-generator .passwords-generator-card .body .row.generated-password {
+    width: 90%;
+  }
+  .passwords-generator .passwords-generator-card .body .row.generated-password span {
+    right: -30px;
+  }
+  .passwords-generator .passwords-generator-card .body .row.generated-password span.mdi-content-copy:hover::after {
     display: none;
   }
 }

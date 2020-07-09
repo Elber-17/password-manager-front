@@ -5,7 +5,6 @@
 		<link rel="stylesheet" href="./css/home.css" />
 		<link rel="stylesheet" href="./css/materialdesignicons.min.css" />
 		<link rel="stylesheet" href="./css/cute-alert.css" />
-		<link rel="stylesheet" href="./node_modules/hint.css/hint.min.css" />
 		<meta
 			name="viewport"
 			content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
@@ -52,7 +51,6 @@
 			<div id="responsive-menu-button" class="responsive-menu-button">
 				<span class="mdi mdi-menu"></span>
 			</div>
-
 			<div class="home">
 				<div class="card">
 					<div class="card-content">
@@ -74,10 +72,7 @@
 							<span class="mdi mdi-gitlab"></span>
 							<span>
 								Ver código fuente en
-								<a
-									href="https://twitter.com/codinghorror/status/506010907021828096"
-									>gitlab</a
-								>
+								<a href="#">gitlab</a>
 							</span>
 						</p>
 						<p class="card-footer-item">
@@ -234,7 +229,78 @@
 				</div>
 			</div>
 			<div class="passwords-generator">
-				<h1>generator de contraseñas seguras</h1>
+				<div class="passwords-generator-card">
+					<div class="header">
+						<span class="mdi mdi-security"></span>Generador De
+						Contraseñas Seguras<span
+							class="mdi mdi-security"
+						></span>
+					</div>
+					<div class="body">
+						<div class="row">
+							<label for="">Carácteres Especiales</label>
+							<input id="specialCharacters" type="text" />
+						</div>
+						<div class="row length">
+							<label for="">Longitud</label>
+							<input type="text" id="length" disabled value="8" />
+							<div
+								class="button-plus"
+								onclick="changeLength('add')"
+							>
+								+
+							</div>
+							<div
+								class="button-down"
+								onclick="changeLength('decrease')"
+							>
+								-
+							</div>
+						</div>
+						<div class="row radios">
+							<label for="">Números</label>
+							<input
+								id="radio1"
+								onclick="unselectMe()"
+								type="radio"
+							/>
+							<label for="">Solo Mayúsculas</label>
+							<input
+								id="radio2"
+								onclick="unselectOther()"
+								type="radio"
+							/>
+							<label for="">Solo Minúsculas</label>
+							<input
+								id="radio3"
+								onclick="unselectOther()"
+								type="radio"
+							/>
+						</div>
+						<div class="row">
+							<div
+								class="button-generate"
+								onclick="generatePassword()"
+							>
+								Generar
+							</div>
+						</div>
+						<div class="row generated-password-label">
+							<label for="">Contraseña Generada</label>
+						</div>
+						<div class="row generated-password">
+							<input
+								type="text"
+								id="generated-password-input"
+								disabled
+							/>
+							<span
+								onclick="copytoClipboard()"
+								class="mdi mdi-content-copy"
+							></span>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div class="configuration">
 				<h1>configuracion</h1>
@@ -247,5 +313,6 @@
 		<script src="./js/axios-request.js"></script>
 		<script src="./js/home.js"></script>
 		<script src="./js/home-accounts.js"></script>
+		<script src="./js/home-password-generator.js"></script>
 	</body>
 </html>

@@ -2,6 +2,7 @@
 @use './fonts';
 @use './helpers';
 @use './home-accounts';
+@use './home-password-generator';
 
 @import "../node_modules/bulma/sass/utilities/initial-variables.sass";
 @import "../node_modules/bulma/sass/utilities/functions.sass";

@@ -243,6 +243,10 @@ var app = new Vue({
             let icon = button.firstElementChild;
             let inputs = event.target.parentElement.parentElement.getElementsByTagName('input');
 
+            while(!inputs){
+                inputs = event.target.parentElement.parentElement.getElementsByTagName('input');
+            }
+
             if(button.innerText === 'Editar'){
                 icon.classList.remove('mdi-square-edit-outline');
                 button.innerText = 'Guardar';
@@ -395,6 +399,8 @@ var app = new Vue({
                             for(input of inputs){
                                 input.disabled = true;
                             }
+
+                            vue.getUserAccounts();
 
                             cuteToast({
                                 type: 'success',
