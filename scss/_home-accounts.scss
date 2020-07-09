@@ -119,10 +119,25 @@
 						}
 
 						span {
+							display: flex;
 							position: absolute;
 							right: -5%;
 							font-size: 1.5rem;
 							cursor: pointer;
+						}
+
+						span.mdi-content-copy:hover::after {
+							display: flex;
+							align-items: center;
+							justify-content: center;
+							position: absolute;
+							font-size: 1rem;
+							content: "Copiar";
+							height: 30px;
+							right: -60px;
+							width: 60px;
+							background: rgba($color: #808080, $alpha: 0.8);
+							color: white;
 						}
 
 						span.mdi-eye-outline {
@@ -197,6 +212,65 @@
 
 			.accounts-card:last-child {
 				margin-bottom: 5%;
+			}
+		}
+	}
+}
+
+@media (min-width: 768px) and (max-width: 1150px) {
+	.content {
+		.accounts {
+			#app {
+				.accounts-card {
+					.form {
+						.row,
+						.row.actions-buttons {
+							width: 80%;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 767.98px) {
+	.content {
+		.accounts {
+			#app {
+				.accounts-card {
+					.form {
+						.row,
+						.row.actions-buttons {
+							width: 80%;
+						}
+					}
+				}
+
+				.accounts-card.new-account {
+					margin-top: 70px;
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 575.98px) {
+	.content {
+		.accounts {
+			#app {
+				.accounts-card {
+					.form {
+						.row {
+							span {
+								right: -10%;
+							}
+							span.mdi-content-copy:hover::after {
+								display: none;
+							}
+						}
+					}
+				}
 			}
 		}
 	}

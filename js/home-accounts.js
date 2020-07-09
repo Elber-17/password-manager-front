@@ -234,7 +234,7 @@ var app = new Vue({
                 input.type = 'text';
             }
 
-            
+            showSnackbar('rgb(39, 218, 70)', 'Copiado al portapapeles');
             
         },
 
@@ -461,6 +461,20 @@ var app = new Vue({
                     // handle error
                     console.log(error);
                 });
+        },
+
+        selectNextInput(){
+            let nextInput = event.currentTarget.parentElement.nextElementSibling.firstElementChild.nextElementSibling;
+            nextInput.focus();
+        },
+
+        inputPasswordNewAccountKeyupEnter(){
+            document.getElementsByClassName('edit-save-button')[0].click();
+        },
+
+        inputPasswordEditAccountKeyupEnter(){
+            let button = event.currentTarget.parentElement.nextElementSibling.firstElementChild;
+            button.click();
         }
     }
 })

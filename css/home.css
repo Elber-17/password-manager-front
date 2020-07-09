@@ -587,10 +587,24 @@ template {
   text-align-last: center;
 }
 .content .accounts #app .accounts-card .form .row span {
+  display: flex;
   position: absolute;
   right: -5%;
   font-size: 1.5rem;
   cursor: pointer;
+}
+.content .accounts #app .accounts-card .form .row span.mdi-content-copy:hover::after {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  font-size: 1rem;
+  content: "Copiar";
+  height: 30px;
+  right: -60px;
+  width: 60px;
+  background: rgba(128, 128, 128, 0.8);
+  color: white;
 }
 .content .accounts #app .accounts-card .form .row span.mdi-eye-outline {
   display: flex;
@@ -656,6 +670,29 @@ template {
   margin-bottom: 5%;
 }
 
+@media (min-width: 768px) and (max-width: 1150px) {
+  .content .accounts #app .accounts-card .form .row,
+.content .accounts #app .accounts-card .form .row.actions-buttons {
+    width: 80%;
+  }
+}
+@media (max-width: 767.98px) {
+  .content .accounts #app .accounts-card .form .row,
+.content .accounts #app .accounts-card .form .row.actions-buttons {
+    width: 80%;
+  }
+  .content .accounts #app .accounts-card.new-account {
+    margin-top: 70px;
+  }
+}
+@media (max-width: 575.98px) {
+  .content .accounts #app .accounts-card .form .row span {
+    right: -10%;
+  }
+  .content .accounts #app .accounts-card .form .row span.mdi-content-copy:hover::after {
+    display: none;
+  }
+}
 .card {
   background-color: white;
   box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02);

@@ -5,6 +5,7 @@
 		<link rel="stylesheet" href="./css/home.css" />
 		<link rel="stylesheet" href="./css/materialdesignicons.min.css" />
 		<link rel="stylesheet" href="./css/cute-alert.css" />
+		<link rel="stylesheet" href="./node_modules/hint.css/hint.min.css" />
 		<meta
 			name="viewport"
 			content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
@@ -107,7 +108,7 @@
 							</div>
 							<div class="row new-account">
 								<label for=""
-									>Seleccion el tipo de cuenta</label
+									>Selecciona el tipo de cuenta</label
 								>
 								<select id="selectNewAccount" name="select">
 									<option
@@ -126,11 +127,17 @@
 							</div>
 							<div class="row">
 								<label for="">Nombre de usuario</label>
-								<input type="text" />
+								<input
+									type="text"
+									v-on:keyup.enter="selectNextInput"
+								/>
 							</div>
 							<div class="row">
 								<label for="">Contraseña</label>
-								<input type="password" />
+								<input
+									type="password"
+									v-on:keyup.enter="inputPasswordNewAccountKeyupEnter"
+								/>
 								<span
 									class="mdi mdi-eye-outline"
 									@click="changeInputType(true)"
@@ -173,6 +180,7 @@
 								<input
 									type="text"
 									:value="account.username"
+									v-on:keyup.enter="selectNextInput"
 									disabled
 								/>
 								<span
@@ -185,6 +193,7 @@
 								<input
 									type="password"
 									:value="account.password"
+									v-on:keyup.enter="inputPasswordEditAccountKeyupEnter"
 									disabled
 								/>
 								<span
