@@ -542,6 +542,7 @@ template {
   flex-direction: column;
   height: 100%;
   overflow: hidden;
+  position: relative;
 }
 .content .accounts #app .accounts-card .form .account-name {
   display: flex;
@@ -612,11 +613,44 @@ template {
   margin-right: 10px;
   transition: all ease-in-out 0.3s;
   margin-bottom: 10px;
+  padding-bottom: 2px;
 }
 .content .accounts #app .accounts-card .edit-save-button span {
   position: absolute;
   right: 5px;
+  font-size: 1.5rem;
   transition: all ease-in-out 0.3s;
+}
+.content .accounts #app .accounts-card .row.actions-buttons {
+  margin-top: 25px;
+}
+.content .accounts #app .accounts-card .row.actions-buttons .edit-save-button,
+.content .accounts #app .accounts-card .row.actions-buttons .button-delete {
+  align-items: center;
+  justify-content: center;
+  height: 35px;
+  width: 120px;
+  border: 1px solid red;
+  cursor: pointer;
+  align-self: flex-end;
+  position: relative;
+  display: flex;
+  margin-right: 10px;
+  transition: all ease-in-out 0.3s;
+  margin-bottom: 10px;
+  padding-bottom: 2px;
+}
+.content .accounts #app .accounts-card .row.actions-buttons .edit-save-button span,
+.content .accounts #app .accounts-card .row.actions-buttons .button-delete span {
+  position: absolute;
+  right: 5px;
+  transition: all ease-in-out 0.3s;
+}
+.content .accounts #app .display-none {
+  display: none;
+}
+.content .accounts #app .saved-accounts.first {
+  height: 0px;
 }
 .content .accounts #app .accounts-card:last-child {
   margin-bottom: 5%;

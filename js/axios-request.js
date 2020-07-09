@@ -1,3 +1,21 @@
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+console.log(document.cookie);
+
 let requestConfig = {
     url: '',
     method: '',
@@ -7,6 +25,7 @@ let requestConfig = {
     
     //     return data;
     //   }],
+    headers:{'X-CSRF-TOKEN': getCookie('csrf_access_token')},
     params: {},
     validateStatus: function (status) {
         return status >= 200 && status <= 500; // default

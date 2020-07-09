@@ -4,6 +4,7 @@
 		<meta charset="UTF-8" />
 		<link rel="stylesheet" href="./css/home.css" />
 		<link rel="stylesheet" href="./css/materialdesignicons.min.css" />
+		<link rel="stylesheet" href="./css/cute-alert.css" />
 		<meta
 			name="viewport"
 			content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
@@ -118,7 +119,7 @@
 									>
 									<option
 										v-for="account of accounts"
-										value="account.id"
+										:value="account.id"
 										>{{account.name}}</option
 									>
 								</select>
@@ -149,8 +150,8 @@
 						</div>
 					</div>
 					<div
-						class="accounts-card"
-						v-for="account of userAccounts"
+						:class="index == 0 ? 'accounts-card saved-accounts display-none' : 'accounts-card saved-accounts'"
+						v-for="(account, index) in userAccounts"
 						:key="account.id"
 						:id="account.id"
 						@mouseover="overAccountCard(account.account.dominantColor)"
@@ -195,16 +196,29 @@
 									@click="changeInputType(false)"
 								></span>
 							</div>
-							<div
-								@mouseover="buttonEditSaveHover(account.account.dominantColor)"
-								@mouseleave="buttonEditSaveLeave(account.account.dominantColor)"
-								@click="buttonEditSaveClick(account.account.dominantColor)"
-								class="edit-save-button"
-							>
-								Editar
-								<span
-									class="mdi mdi-square-edit-outline"
-								></span>
+							<div class="row actions-buttons">
+								<div
+									@mouseover="buttonEditSaveHover(account.account.dominantColor)"
+									@mouseleave="buttonEditSaveLeave(account.account.dominantColor)"
+									@click="buttonEditSaveClick(account.account.dominantColor)"
+									class="edit-save-button"
+								>
+									Editar
+									<span
+										class="mdi mdi-square-edit-outline"
+									></span>
+								</div>
+								<div
+									@mouseover="buttonEditSaveHover(account.account.dominantColor)"
+									@mouseleave="buttonEditSaveLeave(account.account.dominantColor)"
+									class="button-delete"
+									@click="confirmDeleteUserAccount(account.id)"
+								>
+									Borrar
+									<span
+										class="mdi mdi-square-edit-outline"
+									></span>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -220,6 +234,7 @@
 
 		<script src="./js/vue.js"></script>
 		<script src="./js/axios.min.js"></script>
+		<script src="./js/cute-alert.js"></script>
 		<script src="./js/axios-request.js"></script>
 		<script src="./js/home.js"></script>
 		<script src="./js/home-accounts.js"></script>

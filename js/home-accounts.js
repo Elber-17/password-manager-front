@@ -12,10 +12,14 @@ var app = new Vue({
     },
 
     methods:{
+        sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        },
+
         getAccounts(){
             requestConfig.url = 'account/'
             requestConfig.method = 'get';
-            vue = this;
+            let vue = this;
 
             axios.request(requestConfig)
                 .then(function (response) {
@@ -32,10 +36,30 @@ var app = new Vue({
                 });
         },
 
+        async showNewAccountCard(){
+            while(true){
+                await this.sleep(1);
+
+                try {
+                    document.getElementsByClassName('saved-accounts')[0].classList.add('first');
+                    break;
+                } catch (error) {
+                    continue;
+                }
+                
+            }
+            
+            await this.sleep(600);
+            document.getElementsByClassName('saved-accounts')[0].style.display = 'flex';
+            await this.sleep(5);
+            document.getElementsByClassName('saved-accounts')[0].classList.remove('first');
+        },
+
         getUserAccounts(){
             requestConfig.url = 'user/accounts/'
             requestConfig.method = 'get';
-            vue = this;
+            requestConfig.params = {};
+            let vue = this;
 
             axios.request(requestConfig)
                 .then(function (response) {
@@ -43,7 +67,7 @@ var app = new Vue({
                     switch (response.status) {
                         case 200:
                             vue.userAccounts = response.data;
-                            vue.userAccountsCopy = response.data;
+                            vue.showNewAccountCard();
                             break;
                     }
                 })
@@ -66,6 +90,7 @@ var app = new Vue({
         showInfo(dominantColor){
             let accountCard = event.currentTarget.parentElement;
             let buttonEditSave = accountCard.getElementsByClassName('edit-save-button')[0];
+            
             let inputs = accountCard.getElementsByTagName('input');
             let icons = accountCard.getElementsByTagName('span');
             
@@ -79,10 +104,17 @@ var app = new Vue({
                 if(icon.id === 'new-account'){
                     continue;
                 }
+
                 icon.style.color = dominantColor;
             }
 
             buttonEditSave.style.border = '1px solid ' + dominantColor;
+
+            try {
+                accountCard.getElementsByClassName('button-delete')[0].style.border = '1px solid ' + dominantColor;
+            } catch (error) {
+                
+            }
 
             if([...accountCard.classList].includes('new-account')){
                 if(!accountCard.style.height || accountCard.style.height === '150px'){
@@ -209,14 +241,13 @@ var app = new Vue({
         buttonEditSaveClick(dominantColor){
             let button = event.currentTarget;
             let icon = button.firstElementChild;
-            let inputs = event.target.parentElement.getElementsByTagName('input');
+            let inputs = event.target.parentElement.parentElement.getElementsByTagName('input');
 
             if(button.innerText === 'Editar'){
                 icon.classList.remove('mdi-square-edit-outline');
                 button.innerText = 'Guardar';
                 icon.classList.add('mdi-content-save-outline');
                 button.appendChild(icon);
-
                 for(input of inputs){
                     input.disabled = false;
                 }
@@ -284,7 +315,7 @@ var app = new Vue({
             return true;
         },
 
-        addUserAccount(){
+       addUserAccount(){
             let form = event.currentTarget.parentElement
             let select = form.getElementsByTagName('select')[0];
             let inputUsername = form.getElementsByTagName('input')[0];
@@ -298,29 +329,138 @@ var app = new Vue({
                 showSnackbar('rgb(245, 49, 49)', 'No dejes campos vacios.');
                 return;
             }
+
+            requestConfig.url = 'user/accounts/'
+            requestConfig.method = 'post';
+            requestConfig.params.username = inputUsername.value;
+            requestConfig.params.password = inputPassword.value;
+            requestConfig.params.account_id = select.value;
+            let vue = this;
+
+            axios.request(requestConfig)
+                .then(function (response) {
+                    // handle success
+                    switch (response.status) {
+                        case 201:
+                            vue.getUserAccounts();
+                            inputPassword.value = '';
+                            inputUsername.value = ''
+                            select.value = 'none';
+
+                            cuteToast({
+                                type: 'success',
+                                message: 'Nueva cuenta agregada',
+                                timer: 4000
+                            });
+
+                            break;
+                    }
+                })
+                .catch(function (error) {
+                    // handle error
+                    console.log(error);
+                });
         },
 
         editUserAccount(dominantColor, button, icon, inputs){
-            let form = event.currentTarget.parentElement
+            let form = event.currentTarget.parentElement.parentElement;
             let inputUsername = form.getElementsByTagName('input')[0];
             let inputPassword = form.getElementsByTagName('input')[1];
 
             let validUsername = this.validateUsername(inputUsername, dominantColor);
             let validPassword = this.validatePassword(inputPassword, dominantColor);
-
+            
             if(!validUsername || !validPassword){
                 showSnackbar('rgb(245, 49, 49)', 'No dejes campos vacios.');
                 return;
             }
 
-            icon.classList.remove('mdi-content-save-outline');
-            button.innerText = 'Editar';
-            icon.classList.add('mdi-square-edit-outline');
-            button.appendChild(icon);
+            requestConfig.url = 'user/accounts/'
+            requestConfig.method = 'patch';
+            requestConfig.params.username = inputUsername.value;
+            requestConfig.params.password = inputPassword.value;
+            requestConfig.params.id = form.parentElement.id;
+            let vue = this;
 
-            for(input of inputs){
-                input.disabled = true;
-            }
+            axios.request(requestConfig)
+                .then(function (response) {
+                    // handle success
+                    switch (response.status) {
+                        case 204:
+                            icon.classList.remove('mdi-content-save-outline');
+                            button.innerText = 'Editar';
+                            icon.classList.add('mdi-square-edit-outline');
+                            button.appendChild(icon);
+                            
+                            for(input of inputs){
+                                input.disabled = true;
+                            }
+
+                            cuteToast({
+                                type: 'success',
+                                message: 'Cuenta actualizada',
+                                timer: 4000
+                            });
+
+                            break;
+                    }
+                })
+                .catch(function (error) {
+                    // handle error
+                    console.log(error);
+                });
+
+            
+        },
+
+        confirmDeleteUserAccount(id){
+            let vue = this;
+
+            cuteAlert({
+                type: 'question',
+                title: 'Eliminar Cuenta',
+                message: '¿Deseas eliminar esta cuenta?',
+                confirmText: 'Si',
+                cancelText: 'No',
+
+            }).then((userResponse) =>{
+                if(userResponse === 'confirm'){
+                    vue.deleteUserAccount(id);
+                }
+            })
+        },
+
+        async deleteUserAccountCard(id){
+            document.getElementById(id).style.border = 'none';
+            document.getElementById(id).style.height = '0px';
+            await this.sleep(450);
+            document.getElementById(id).style.display = 'none';
+        },
+
+        deleteUserAccount(id){
+            requestConfig.params.id = id;
+            requestConfig.url = 'user/accounts/'
+            requestConfig.method = 'delete';
+            let vue = this;
+
+            axios.request(requestConfig)
+                .then(function (response) {
+                    // handle success
+                    switch (response.status) {
+                        case 204:
+                            vue.deleteUserAccountCard(id)
+                            cuteToast({
+                                type: 'success',
+                                message: 'Cuenta eliminada',
+                                timer: 4000
+                            });
+                            break;
+                    }
+                })
+                .catch(function (error) {
+                    // handle error
+                    console.log(error);
+                });
         }
     }
 })
