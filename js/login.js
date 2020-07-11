@@ -5,6 +5,18 @@ window.addEventListener('popstate', () => {
     location.reload();
 }, false);
 
+
+cuteAlert({
+    type: 'success',
+    title: 'Version de prueba',
+    message: `Puedes probar la app con las siguientes credenciales<br/>
+    usario : <strong>elber</strong><br/>
+    contraseña : <strong>test1234.</strong><br/><br/>
+    También puedes crear usuarios nuevos.
+    `,
+    buttonText: 'Entendido'
+});
+
 function checkIsValidSession(loadPage){
     if(loadPage){
         document.getElementsByTagName('body')[0].style.display = 'none';
@@ -218,6 +230,8 @@ async function login(){
     
     switch(response.status){
         case 200:
+            console.log(response.data);
+            localStorage.setItem('csrf_access_token', response.data.csrf_access_token);
             window.location.href = 'home.html';
             break;
 
