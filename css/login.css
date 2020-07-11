@@ -684,6 +684,7 @@ html {
   flex-direction: column;
   height: 70%;
   width: 50%;
+  box-sizing: border-box;
   -webkit-box-shadow: 3px 13px 24px -4px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 3px 13px 24px -4px rgba(0, 0, 0, 0.75);
   box-shadow: 3px 13px 24px -4px rgba(0, 0, 0, 0.75);
@@ -695,6 +696,7 @@ html {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   text-align: center;
@@ -704,6 +706,12 @@ html {
   width: 100%;
   color: white;
   background-color: #218bb4;
+}
+.main-container .form-container .form .title h1 {
+  font-size: 1.75rem;
+  margin: 0 50px;
+  font-family: Roboto-Regular;
+  font-weight: 100;
 }
 .main-container .form-container .form .inputs {
   display: flex;
