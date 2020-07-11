@@ -1,3 +1,30 @@
+window.addEventListener('popstate', () => {
+    location.reload();
+}, false);
+
+function checkIsValidSession(){
+    requestConfig.url = 'session/check/'
+    requestConfig.method = 'get';
+
+    axios.request(requestConfig)
+        .then(function (response) {
+            // handle success
+            switch (response.status) {
+                case 200:
+                    window.location.href = 'home.html';    
+                    break;
+                
+                case 401:
+                    document.getElementsByTagName('body')[0].style.display = 'flex';
+                    break;
+            }
+        })
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+        });
+}
+
 function redirect(page){
     window.location.href = page;
 }
@@ -27,6 +54,7 @@ function closeResponsiveMenu(){
     document.getElementsByClassName('demas')[0].style.display = 'flex'
 }
 
+checkIsValidSession();
 document.getElementById('login-button').addEventListener('click', function(){redirect('login.html')}, false);
 document.getElementById('sign-up-button').addEventListener('click', function(){redirect('sign-up.html')}, false);
 document.getElementById('login-responsive-button').addEventListener('click', function(){redirect('login.html')}, false);

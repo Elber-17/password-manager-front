@@ -1,6 +1,14 @@
 const HOME = 0;
 let active = HOME;
 
+window.addEventListener('popstate', () => {
+    location.reload();
+  }, false);
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 function checkIsValidSession(loadPage){
     if(loadPage){
         document.getElementsByTagName('body')[0].style.display = 'none';
@@ -111,8 +119,12 @@ function getUser(){
     button.innerText = 'Editar';
 }
 
-function showContent(newActive){
+async function showContent(newActive){
+    document.getElementById('loader-content').style.display = 'flex';
+
     if(newActive == active){
+        await sleep(500);
+        document.getElementById('loader-content').style.display = 'none';
         return;
     }
 
@@ -129,12 +141,15 @@ function showContent(newActive){
         case 0:
             document.getElementsByClassName('home')[0].style.display = 'flex';
             break;
+
         case 1:
             document.getElementsByClassName('accounts')[0].style.display = 'flex';
             break;
+
         case 2:
             document.getElementsByClassName('passwords-generator')[0].style.display = 'flex';
             break;
+
         case 3:
             document.getElementsByClassName('configuration')[0].style.display = 'flex';
             break;
@@ -156,6 +171,8 @@ function showContent(newActive){
     }
 
     active = newActive;
+    await sleep(500);
+    document.getElementById('loader-content').style.display = 'none';
 }
 
 function logout(){
@@ -193,7 +210,7 @@ function responsiveOutfocusMenu(){
     document.getElementsByClassName('outfocus-responsive-menu')[0].addEventListener('click', closeSidebar, false);
 }
 
-function main(){
+async function main(){
     checkIsValidSession(true);
     setInterval(checkIsValidSession, 60*60000);
     markActive();
@@ -201,6 +218,8 @@ function main(){
     responsiveMenuButton();
     responsiveOutfocusMenu();
     getUser();
+    await sleep(1000);
+    document.getElementById('loader').style.display = 'none';
 }
 
 main();

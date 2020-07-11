@@ -2,6 +2,40 @@ let usernameValidate = false;
 let emailValidate = false;
 let passwordValidate = false;
 
+window.addEventListener('popstate', () => {
+    location.reload();
+}, false);
+
+function checkIsValidSession(loadPage){
+    if(loadPage){
+        document.getElementsByTagName('body')[0].style.display = 'none';
+    }
+
+    requestConfig.url = 'session/check/'
+    requestConfig.method = 'get';
+
+    axios.request(requestConfig)
+        .then(function (response) {
+            // handle success
+            switch (response.status) {
+                case 200:
+                    window.location.href = 'home.html';    
+                    break;
+                
+                case 401:
+                    if(loadPage){
+                        document.getElementsByTagName('body')[0].style.display = 'flex';
+                    }
+                    break;
+            }
+        })
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+        });
+}
+
+
 function changeInputType(inputId){
     let input = document.getElementById(inputId);
 
@@ -418,6 +452,7 @@ function validateAll(){
     return;
 }
 
+checkIsValidSession(true);
 document.getElementById('username').addEventListener('blur', usernameBlurValidate, false);
 document.getElementById('username').addEventListener('animationend', function(){removeAnimation('username')}, false);
 document.getElementById('email').addEventListener('blur', emailBlurValidate, false);
