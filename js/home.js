@@ -71,10 +71,52 @@ function closeSidebar(){
     });
 }
 
+function getUser(){
+    let form = document.getElementById('form-account-user');
+    let inputs = form.getElementsByTagName('input');
+    let button = form.getElementsByClassName('button-edit')[0];
+    let username = inputs[0];
+    let email = inputs[1];
+    let password = inputs[2];
+    let creationDate = inputs[3];
+    requestConfig.url = 'user/'
+    requestConfig.method = 'get';
+
+    axios.request(requestConfig)
+        .then(function (response) {
+            // handle success
+            switch (response.status) {
+                case 200:
+                    username.value = response.data.username;
+                    password.value = response.data.password;
+                    email.value = response.data.email;
+                    let year = response.data.creationDate.slice(0,4);
+                    let month = response.data.creationDate.slice(5,7);
+                    let day = response.data.creationDate.slice(8);
+                    let date =  day + '/' + month + '/' + year;
+                    creationDate.value = date;
+                    break;
+            }
+        })
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+        });
+    
+    for(input of inputs){
+        input.disabled = true;
+        input.style.border = '1px solid rgb(33, 139, 180)';
+    }
+    
+    button.innerText = 'Editar';
+}
+
 function showContent(newActive){
     if(newActive == active){
         return;
     }
+
+    getUser();
 
     if(window.screen.width < 767){
         closeSidebar();
@@ -158,6 +200,7 @@ function main(){
     elementListener();
     responsiveMenuButton();
     responsiveOutfocusMenu();
+    getUser();
 }
 
 main();

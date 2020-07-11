@@ -653,7 +653,6 @@ template {
   margin-right: 10px;
   transition: all ease-in-out 0.3s;
   margin-bottom: 10px;
-  padding-bottom: 2px;
 }
 .content .accounts #app .accounts-card .row.actions-buttons .edit-save-button span,
 .content .accounts #app .accounts-card .row.actions-buttons .button-delete span {
@@ -888,6 +887,141 @@ template {
   }
   .passwords-generator .passwords-generator-card .body .row.generated-password span.mdi-content-copy:hover::after {
     display: none;
+  }
+}
+.configuration {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.configuration .card-config {
+  box-sizing: border-box;
+  width: 60%;
+  height: 90%;
+  max-height: 500px;
+  min-height: 380px;
+  max-width: 600px;
+  -webkit-box-shadow: 3px 13px 24px -4px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 3px 13px 24px -4px rgba(0, 0, 0, 0.75);
+  box-shadow: 3px 13px 24px -4px rgba(0, 0, 0, 0.75);
+  display: flex;
+  flex-direction: column;
+}
+.configuration .card-config .header {
+  background-color: #218bb4;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.configuration .card-config .header h1 {
+  color: white;
+  font-family: Roboto-Regular;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 100;
+}
+.configuration .card-config .header span {
+  color: white;
+  font-size: 4rem;
+  margin: 0 20px;
+}
+.configuration .card-config .body {
+  display: flex;
+  flex-direction: column;
+  margin: 25px 0;
+  align-items: center;
+  height: 70%;
+  justify-content: center;
+}
+.configuration .card-config .body .row {
+  display: flex;
+  width: 80%;
+  height: 35px;
+  align-items: center;
+  margin: 10px 0;
+}
+.configuration .card-config .body .row label {
+  text-align: center;
+  width: 50%;
+}
+.configuration .card-config .body .row input {
+  box-sizing: border-box;
+  width: 50%;
+  height: 30px;
+  border: 1px solid #218bb4;
+  text-align: center;
+}
+.configuration .card-config .body .row input:focus {
+  outline: none;
+}
+.configuration .card-config .body .row input:disabled {
+  background-color: rgba(119, 119, 119, 0.3);
+}
+.configuration .card-config .body .row.actions-buttons {
+  height: 55px;
+  justify-content: space-evenly;
+}
+.configuration .card-config .body .row.actions-buttons .button {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid #218bb4;
+  height: 40px;
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all ease-in-out 0.3s;
+  text-align: center;
+}
+.configuration .card-config .body .row.actions-buttons .button.button-edit:hover {
+  background-color: #218bb4;
+  color: white;
+}
+.configuration .card-config .body .row.actions-buttons .button.button-delete-account:hover {
+  background-color: #fa4a4a;
+  border: none;
+  color: white;
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .configuration .card-config {
+    width: 85%;
+  }
+}
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .configuration .card-config {
+    width: 85%;
+  }
+}
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .configuration .card-config {
+    margin-top: 30px;
+    width: 85%;
+  }
+}
+@media (max-width: 575.98px) {
+  .configuration .card-config {
+    margin-top: 30px;
+    width: 85%;
+    height: 520px;
+    max-height: 520px;
+  }
+  .configuration .card-config .header {
+    height: 30%;
+  }
+  .configuration .card-config .header h1 {
+    font-size: 1.25rem;
+  }
+  .configuration .card-config .body .row {
+    width: 95%;
   }
 }
 .card {

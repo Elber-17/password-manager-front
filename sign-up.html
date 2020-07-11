@@ -5,14 +5,14 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="./css/sign-up.css" />
 		<link rel="stylesheet" href="./css/materialdesignicons.min.css" />
-		<title>Registro - Passwords Management</title>
+		<title>Registro - Passwords Manager</title>
 	</head>
 	<body>
 		<div class="navbar">
 			<div class="icon">
 				<span class="mdi mdi-lock-outline"></span>
 			</div>
-			<h2>Passwords Management</h2>
+			<h2>Passwords Manager</h2>
 		</div>
 		<div class="panel-container">
 			<div class="panel-1">
@@ -20,8 +20,8 @@
 					Mantén todas tus contraseñas seguras y ordenadas.
 				</h2>
 				<p>
-					Passwords Management es un poderosa herramienta online que
-					te permite guardar y gestionar todas tus cuentas, además te
+					Passwords Manager es un poderosa herramienta online que te
+					permite guardar y gestionar todas tus cuentas, además te
 					permite generar contraseñas seguras para evitar ser victima
 					de los piratas informáticos.
 				</p>
@@ -43,7 +43,7 @@
 				</div>
 				<div class="form-container">
 					<div class="title">
-						Registrate en Passwords Management
+						Registrate en Passwords Manager
 					</div>
 					<div class="form-body">
 						<div class="row">
@@ -73,7 +73,11 @@
 							<div class="icon">
 								<span class="mdi mdi-lock-outline"></span>
 							</div>
-							<input type="password" / id="password">
+							<input
+								type="password"
+								onkeyup="inputPasswordKeyUpEnter()"
+								id="password"
+							/>
 							<div class="error-msg password-error-msg"></div>
 							<div
 								class="show-password-icon"
@@ -93,6 +97,8 @@
 				</div>
 			</div>
 		</div>
+		<script src="./js/axios.min.js"></script>
+		<script src="./js/axios-request.js"></script>
 		<script src="./js/validations.js"></script>
 		<script src="./js/forms-helpers.js"></script>
 		<script src="./js/sign-up.js"></script>

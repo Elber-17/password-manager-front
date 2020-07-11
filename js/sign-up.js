@@ -320,15 +320,52 @@ function closeNotification(){
     notification.style.padding = '0';
 }
 
-function showNotification(){
+function showNotification(msg){
     let notification = document.getElementById('notification');
+    notification.innerHTML = `
+    <div
+    class="notification-button-close"
+    id="notification-button-close"
+    >
+        <span class="mdi mdi-close"></span>
+    </div>
+    ` + msg;
+    document.getElementById('notification-button-close').addEventListener('click', closeNotification, false);
     notification.style.height = '10%';
+
 }
 
 function removeAnimation(inputId){
     document.getElementById(inputId).style.animation = 'none';
 }
 
+function signUpLogin(username, password){
+    requestConfig.url = 'session/login/'
+    requestConfig.method = 'post';
+    requestConfig.params.username = username;
+    requestConfig.params.password = password;
+
+    axios.request(requestConfig)
+        .then(function (response) {
+            // handle success
+            switch (response.status) {
+                case 200:
+                    window.location.href = 'home.html';
+                    break;
+            }
+        })
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+        });
+}
+
+function inputPasswordKeyUpEnter(){
+    if (event.keyCode === 13) {
+        document.getElementById('button-continue').click();
+    }
+    
+}
 
 function validateAll(){
     closeNotification();
@@ -349,12 +386,34 @@ function validateAll(){
             document.getElementById('email').style.animation = 'shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both';
         }
 
-        showNotification();
+        showNotification('Debes rellenar todos los campos.');
 
         return;
     }
 
-    alert('me logeo');
+    requestConfig.url = 'user/'
+    requestConfig.method = 'post';
+    requestConfig.params.username = document.getElementById('username').value;
+    requestConfig.params.password = document.getElementById('password').value;
+    requestConfig.params.email = document.getElementById('email').value;
+
+    axios.request(requestConfig)
+        .then(function (response) {
+            // handle success
+            switch (response.status) {
+                case 201:
+                    signUpLogin(requestConfig.params.username, requestConfig.params.password);
+                    break;
+                
+                case 500:
+                    showNotification('Ocurrio un error interno, intentalo más tarde.');
+                    break;
+            }
+        })
+        .catch(function (error) {
+            showNotification('Ocurrio un error interno, intentalo más tarde.');
+            console.log(error);
+        });
 
     return;
 }

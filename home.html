@@ -9,7 +9,7 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
 		/>
-		<title>Home - Passwords Management</title>
+		<title>Home - Passwords Manager</title>
 	</head>
 	<body>
 		<div id="snackbar">Some text some message..</div>
@@ -18,7 +18,7 @@
 				<div class="icon">
 					<span class="mdi mdi-lock-outline"></span>
 				</div>
-				Passwords Management
+				Passwords Manager
 			</div>
 			<div class="element">
 				<span class="mdi mdi-home-outline"></span>
@@ -29,7 +29,7 @@
 				Cuentas
 			</div>
 			<div class="element">
-				<span class="mdi mdi-folder-multiple-plus-outline"></span>
+				<span class="mdi mdi-security"></span>
 				Generador de contraseñas
 			</div>
 			<div class="element">
@@ -303,7 +303,54 @@
 				</div>
 			</div>
 			<div class="configuration">
-				<h1>configuracion</h1>
+				<div class="card-config">
+					<div class="header">
+						<span class="mdi mdi-nut"></span>
+						<h1>Configuración de la cuenta de Passsword Manager</h1>
+						<span class="mdi mdi-nut"></span>
+					</div>
+					<div class="body" id="form-account-user">
+						<div class="row">
+							<label for="">Nombre de usuario</label>
+							<input disabled type="text" />
+						</div>
+						<div class="row">
+							<label for="">Correo Registrado</label>
+							<input
+								id="input-edit-account-email"
+								disabled
+								type="text"
+							/>
+						</div>
+						<div class="row">
+							<label for="">Contraseña</label>
+							<input
+								id="input-edit-account-password"
+								disabled
+								password
+								type="password"
+							/>
+						</div>
+						<div class="row">
+							<label for="">Fecha de creación de la cuenta</label>
+							<input disabled type="text" />
+						</div>
+						<div class="row actions-buttons">
+							<div
+								onclick="buttonEditSaveClick()"
+								class="button button-edit"
+							>
+								Editar
+							</div>
+							<div
+								onclick="DeleteMeAccount()"
+								class="button button-delete-account"
+							>
+								Eliminar mi cuenta
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 
@@ -314,5 +361,7 @@
 		<script src="./js/home.js"></script>
 		<script src="./js/home-accounts.js"></script>
 		<script src="./js/home-password-generator.js"></script>
+		<script src="./js/validations.js"></script>
+		<script src="./js/home-config.js"></script>
 	</body>
 </html>

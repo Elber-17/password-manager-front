@@ -3,6 +3,7 @@
 @use './helpers';
 @use './home-accounts';
 @use './home-password-generator';
+@use './home-config';
 
 @import "../node_modules/bulma/sass/utilities/initial-variables.sass";
 @import "../node_modules/bulma/sass/utilities/functions.sass";

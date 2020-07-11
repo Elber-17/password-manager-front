@@ -83,6 +83,11 @@ function generatePassword(){
     let number = '1234567890';
     var generatePasswordString = '';
 
+    if(specialCharacters.length > length){
+        length = specialCharacters.length;
+        document.getElementById('length').value = length;
+    }
+
     if(numbers){
         alphabet += number;
     }
@@ -107,6 +112,11 @@ function generatePassword(){
 
 function copytoClipboard(){
     let input = event.currentTarget.previousElementSibling;
+    if(input.value.trim() === ''){
+        showSnackbar('rgb(39, 218, 70)', 'No hay contraseña generada');
+        return;    
+    }
+
     input.disabled = false;
     input.select();
     input.setSelectionRange(0, 99999);

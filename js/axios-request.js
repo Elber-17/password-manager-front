@@ -14,8 +14,6 @@ function getCookie(cname) {
     return "";
 }
 
-console.log(document.cookie);
-
 let requestConfig = {
     url: '',
     method: '',
