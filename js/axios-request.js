@@ -17,7 +17,7 @@ function getCookie(cname) {
 let requestConfig = {
     url: '',
     method: '',
-    baseURL: 'http://200.90.65.77:8888/',
+    baseURL: 'https://elber.pythonanywhere.com/',
     // transformResponse: [function (data) {
     //     // Do whatever you want to transform the data
     
@@ -28,7 +28,7 @@ let requestConfig = {
     validateStatus: function (status) {
         return status >= 200 && status <= 500; // default
     },
-    timeout: 1500,
+    timeout: 3000,
     withCredentials: true,
     
 }
