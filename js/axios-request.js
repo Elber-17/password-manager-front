@@ -12,7 +12,6 @@ let requestConfig = {
     validateStatus: function (status) {
         return status >= 200 && status <= 500; // default
     },
-    timeout: 3000,
+    timeout: 10000,
     withCredentials: true,
-    
 }
