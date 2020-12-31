@@ -1,0 +1,18 @@
+$btn-border-radius: 0rem;
+$btn-border-radius-sm: 0rem;
+$btn-border-radius-lg: 0rem;
+
+$input-border-radius: 0rem;
+$input-border-radius-sm: 0rem;
+$input-border-radius-lg: 0rem;
+
+input.form-control {
+	border: none;
+	border-bottom: 1px solid #dee2e6;
+
+	&:focus {
+		box-shadow: none;
+	}
+}
+
+@import "../node_modules/bootstrap/bootstrap-scss/bootstrap.scss";
