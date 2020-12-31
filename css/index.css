@@ -10628,12 +10628,12 @@ textarea.form-control-lg {
   }
 }
 .main-container {
-  background: #020024;
-  background: radial-gradient(circle, #020024 0%, #090979 20%, #00d4ff 100%);
+  background: #0250c5;
+  background: -webkit-linear-gradient(bottom, #0250c5, #56ced6);
   min-height: 100vh;
 }
 .main-container .form-col {
-  min-height: 520px;
+  min-height: 560px;
 }
 .main-container .form-col form {
   width: 75%;
